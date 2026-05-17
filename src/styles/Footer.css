@@ -1,7 +1,9 @@
-#footer {
-    text-align: center;
-    padding-bottom: 5%;
-    font-size: .8em;
-    font-weight: 200;
-  }
-  
+.footer {
+  text-align: center;
+  padding: 36px 24px;
+  border-top: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  color: var(--text-muted);
+}

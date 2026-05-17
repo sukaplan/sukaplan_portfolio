@@ -1,6 +1,45 @@
-#contact {
-    padding-left: 25%;
-    padding-bottom: 15%;
-    justify-content: center;
-  }
-  
+.contact-section {
+  text-align: center;
+}
+
+.contact-heading {
+  font-size: clamp(38px, 7vw, 72px);
+  font-weight: 800;
+  letter-spacing: -2px;
+  line-height: 1.05;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 22px;
+}
+
+.contact-sub {
+  font-size: 16px;
+  line-height: 1.8;
+  color: var(--text-dim);
+  max-width: 420px;
+  margin: 0 auto 40px;
+}
+
+.contact-btn {
+  margin-bottom: 52px;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 28px;
+}
+
+.contact-links a {
+  color: var(--text-muted);
+  display: flex;
+  transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.contact-links a:hover {
+  color: var(--accent);
+  transform: translateY(-4px);
+}

@@ -1,22 +1,27 @@
-import React from 'react';
-import FadeIn from 'react-fade-in';
+import React, { useRef, useEffect } from 'react';
 import JobList from './JobList';
-import Box from '@mui/material/Box';
-import '../styles/Experience.css';
 
-const Experience = () => { 
-    return (
-        <Box id="experience" >
-            <FadeIn delay={200}>
-                <div className='section-header'>
-                    <span className='section-title'>
-                        / Experience
-                    </span>
-                </div>
-                <JobList></JobList>
-            </FadeIn>
-        </Box>
+const Experience = () => {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) el.classList.add('visible'); },
+      { threshold: 0.1 }
     );
-}
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section id="experience" className="section fade-up" ref={ref}>
+      <div className="section-label">Experience</div>
+      <h2 className="section-heading">Where I've worked</h2>
+      <JobList />
+    </section>
+  );
+};
 
 export default Experience;

@@ -1,53 +1,66 @@
-import React from "react";
-import FadeIn from 'react-fade-in';
+import React, { useRef, useEffect } from 'react';
 import '../styles/About.css';
 
-const tech_stack = [
-    "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/javascript/javascript.png",
-    "https://cdn.svgporn.com/logos/dotnet.svg",
-    "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/react/react.png",
-    "https://raw.githubusercontent.com/jmnote/z-icons/master/svg/java.svg",
-    "https://raw.githubusercontent.com/jmnote/z-icons/master/svg/csharp.svg",
-    "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/html/html.png",
-    "https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/css/css.png",
-    "https://cdn.svgporn.com/logos/git-icon.svg",
-    "https://cdn.svgporn.com/logos/microsoft-azure.svg",
-    "https://cdn.svgporn.com/logos/kubernetes.svg"
-  ];
-  const about = (
-    <p>
-        Hey there! I'm a <b>Software Engineer</b> who's super curious about all things tech. 
-        Right now, I'm working in the world of banking and financial solutions and
-        I'm part of the Securities team. Besides work, I love watching movies and I am trying to learn Spanish by myself. I enjoy challenges and keep growing in both regular and work life.
-    </p>
-  );
-  
-const About = () =>
-{
-    return (
-        <div id ="about" >
-            <FadeIn delay={200}>
-                <div className="section-header ">
-                    <span className="section-title">/ About Me</span>
-                </div>
-                <div className="about-content">
-                    <div className="about-description">
-                        {[about]}
-                        {"Here are some technologies I have been working with:"}
-                        <ul className="tech-stack">
-                            {tech_stack.map(function (tech_item, i) {
-                            return (
-                                <FadeIn delay={`${i + 1}00`}>
-                                    <img height={'30px'} width='30px' src={tech_item}  alt="tech_stack_images"/>
-                                </FadeIn>
-                            );
-                        })}
-                        </ul>
-                    </div>
-                </div>
-            </FadeIn>
-        </div>
+const skills = {
+  Languages:        ['C#', 'TypeScript', 'JavaScript', 'Python', 'Java', 'Go'],
+  'Backend & Arch': ['.NET 8', 'ASP.NET Core', 'Microservices', 'DDD', 'REST APIs', 'EF Core'],
+  Frontend:         ['React.js', 'TypeScript', 'RESTful API Integration'],
+  'Cloud & DevOps': ['Azure', 'Docker', 'Kubernetes', 'CI/CD', 'Azure DevOps', 'Git'],
+  'Observability':  ['ELK Stack', 'Elasticsearch', 'Kibana', 'Logstash'],
+  'Testing & Data': ['xUnit', 'NUnit', 'SQL', 'Agile / Scrum'],
+};
+
+const About = () => {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) el.classList.add('visible'); },
+      { threshold: 0.12 }
     );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <section id="about" className="section fade-up" ref={ref}>
+      <div className="section-label">About Me</div>
+      <h2 className="section-heading">Who I am</h2>
+
+      <div className="about-body">
+        <div className="about-text">
+          <p>
+            Hey! I'm <strong>Su</strong>, a Senior Software Engineer with 4.5 years of
+            experience in fintech, building and modernizing large-scale banking systems
+            at <strong>Intertech</strong> — a platform serving 20M+ customers. My core
+            focus is .NET 8 microservices with Domain-Driven Design, but I'm equally
+            comfortable on the React.js frontend or deep in cloud infrastructure on Azure.
+          </p>
+          <p>
+            Highlights include refactoring 850+ legacy monolithic methods into clean
+            RESTful APIs and authoring a 6,000+ test suite that safeguards critical
+            financial workflows. Outside of code, I love watching films, learning
+            languages, and anything that pushes me to grow.
+          </p>
+        </div>
+
+        <div className="about-skills">
+          {Object.entries(skills).map(([category, items]) => (
+            <div className="skill-category" key={category}>
+              <p className="skill-category-name">{category}</p>
+              <div className="skill-pills">
+                {items.map(skill => (
+                  <span className="skill-pill" key={skill}>{skill}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
 };
 
 export default About;

@@ -1,95 +1,218 @@
-#intro {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    padding-left: 15%;
-    padding-top: 5%;
-    min-height: 50vh;
-  }
-  
-  .intro-title {
-    font-family: "NTR", sans-serif;
-    font-size: 3em;
-  }
- 
-  
-  .intro-subtitle {
-    margin-top: -36px;
-    font-family: "NTR", sans-serif;
-    font-weight: 300;
-    font-size: 48px;
-    color: #c5f376;
-  }
-  
-  .intro-desc {
-    color: var(--slate);
-    font-family: "NTR", sans-serif;
-    font-size: 22px;
-    text-align: justify;
-    padding-bottom: 50px;
-  }
-  
-  .intro-contact {
-    font-size: 22px;
-    font-weight: bolder;
-    font-family: "NTR", sans-serif;
-    padding: 10px 20px;
-    cursor: pointer;
-    border: 1px solid #c5f376;
-    border-radius: 4px;
-    justify-content: center;
-    display: grid;
-  }
+/* ── Hero: two-column grid ────────────────────────── */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  align-items: center;
+  gap: 40px;
+  padding: 80px 9% 60px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+}
 
-  .intro-contact a {
-    color: #c5f376;
-  }
-  
-  b {
-    font-size: 17px;
-  }
-  
-  @media only screen and (max-width: 600px) {
-    
-  
-    #intro {
-      min-height: unset;
-      padding-left: unset;
-      margin: 0;
-      align-items: center;
-    }
-  
-    .intro-title {
-      font-size: 46px;
-    }
-    .intro-name {
-      font-size: 46px;
-    }
-  
-    .Typist {
-      font-size: 36px;
-    }
-  
-    .intro-subtitle {
-      margin: 0;
-      font-size: 28px;
-      text-align: center;
-    }
-  
-    .intro-desc {
-      font-size: 18px;
-      text-align: center;
-      max-width: unset;
-      padding-bottom: 40px;
-    }
-  
-    .intro-contact {
-      width: 70px;
-      font-size: 16px;
-      align-self: center;
-      margin-left: 30%;
-    }
+/* ── Left column ──────────────────────────────────── */
+.hero-left {
+  display: flex;
+  flex-direction: column;
+}
 
- 
+/* ── Greeting animation ───────────────────────────── */
+.hero-greeting {
+  margin-bottom: 20px;
+}
+
+.greeting-text {
+  font-family: var(--font-mono);
+  font-size: 17px;
+  color: var(--accent);
+  letter-spacing: 1px;
+}
+
+/* ── Name ─────────────────────────────────────────── */
+.hero-name {
+  font-size: clamp(48px, 7.5vw, 90px);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -2px;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+}
+
+/* ── Role ─────────────────────────────────────────── */
+.hero-role {
+  font-size: clamp(18px, 3vw, 32px);
+  font-weight: 500;
+  color: var(--text-dim);
+  letter-spacing: -0.3px;
+  margin-bottom: 28px;
+}
+
+/* ── Bio ──────────────────────────────────────────── */
+.hero-bio {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--text-dim);
+  max-width: 500px;
+  margin-bottom: 44px;
+}
+
+/* ── CTA buttons ──────────────────────────────────── */
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* ── Scroll hint ──────────────────────────────────── */
+.hero-scroll-hint {
+  margin-top: 64px;
+}
+
+.hero-scroll-hint span {
+  display: block;
+  width: 1.5px;
+  height: 48px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  border-radius: 2px;
+  animation: scrollPulse 2.2s ease-in-out infinite;
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.9; transform: scaleY(1); }
+  50%       { opacity: 0.2; transform: scaleY(0.55); }
+}
+
+/* ── Right column: decorative orb ────────────────── */
+.hero-visual {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* push down so orb clears the cat mascot */
+  padding-top: 180px;
+}
+
+.hero-orb-wrap {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ── Orb circle ───────────────────────────────────── */
+.hero-orb {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow:
+    0 0 0 1px var(--border),
+    0 0 60px rgba(167, 139, 250, 0.1),
+    inset 0 0 40px rgba(167, 139, 250, 0.05);
+  position: relative;
+  z-index: 1;
+}
+
+.hero-monogram {
+  font-size: 76px;
+  font-weight: 800;
+  letter-spacing: -4px;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1;
+  user-select: none;
+}
+
+/* ── Orbiting rings ───────────────────────────────── */
+.hero-ring {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.hero-ring--outer {
+  inset: -36px;
+  border: 1px solid rgba(109, 79, 194, 0.22);
+  animation: spinRing 22s linear infinite;
+}
+
+.hero-ring--inner {
+  inset: -18px;
+  border: 1px dashed rgba(59, 130, 246, 0.20);
+  animation: spinRing 15s linear infinite reverse;
+}
+
+.ring-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 10px var(--accent-glow);
+  top: 50%;
+  right: -4px;
+  transform: translateY(-50%);
+}
+
+@keyframes spinRing {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Floating tech chips ──────────────────────────── */
+.hero-chip {
+  position: absolute;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-dim);
+  white-space: nowrap;
+  animation: chipFloat 4s ease-in-out infinite;
+  z-index: 2;
+}
+
+.chip-1 { top: -18px;  left: 50%; transform: translateX(-50%); animation-delay: 0s; }
+.chip-2 { right: -80px; top: 50%; transform: translateY(-50%); animation-delay: 1s; }
+.chip-3 { bottom: -18px; left: 50%; transform: translateX(-50%); animation-delay: 2s; }
+.chip-4 { left: -80px; top: 50%; transform: translateY(-50%); animation-delay: 0.5s; }
+
+@keyframes chipFloat {
+  0%, 100% { opacity: 0.7; }
+  50%       { opacity: 1; }
+}
+
+/* ── Responsive ───────────────────────────────────── */
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding: 100px 9% 60px;
   }
-  
+  .hero-visual {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero {
+    padding: 100px 24px 60px;
+  }
+  .hero-bio {
+    font-size: 15px;
+  }
+  .hero-scroll-hint {
+    display: none;
+  }
+}

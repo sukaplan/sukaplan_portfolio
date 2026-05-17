@@ -1,134 +1,95 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
-import Tabs from '@mui/material/Tabs';
-import Tab from '@mui/material/Tab';
-import Typography from '@mui/material/Typography';
-import Box from '@mui/material/Box';
-import FadeIn from 'react-fade-in';
+import React, { useRef, useEffect } from 'react';
+import '../styles/Experience.css';
 
-function TabPanel(props) {
-  const { children, value, index, ...other } = props;
-
-  return (
-    <Box
-      role="tabpanel"
-      hidden={value !== index}
-      id={`vertical-tabpanel-${index}`}
-      aria-labelledby={`vertical-tab-${index}`}
-      {...other}
-    >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
-    </Box>
-  );
-}
-
-TabPanel.propTypes = {
-  children: PropTypes.node,
-  index: PropTypes.number.isRequired,
-  value: PropTypes.number.isRequired,
-};
-
-function a11yProps(index) {
-  return {
-    id: `vertical-tab-${index}`,
-    'aria-controls': `vertical-tabpanel-${index}`,
-  };
-}
+const jobs = [
+  {
+    title: 'Senior Software Engineer',
+    company: 'Intertech',
+    duration: 'Jan 2026 – Present',
+    desc: [
+      'Leading the modernization of legacy banking systems into microservices using .NET 8 and Domain-Driven Design.',
+      'Overseeing architecture decisions for core Securities and Investment modules serving 20M+ customers.',
+    ],
+  },
+  {
+    title: 'Expert Software Engineer',
+    company: 'Intertech',
+    duration: 'Jul 2023 – Jan 2026',
+    desc: [
+      'Refactored 850+ legacy monolithic methods into modular RESTful APIs with clean architecture, enabling independent service deployment and reducing time-to-production.',
+      'Authored 6,000+ unit and integration tests across core financial workflows, raising coverage and building a safety net for high-stakes banking operations.',
+    ],
+  },
+  {
+    title: 'Software Engineer',
+    company: 'Intertech',
+    duration: 'Jan 2022 – Jul 2023',
+    desc: [
+      'Designed and developed a full-stack asset dashboard using React.js and ASP.NET Core, providing visibility into securities, funds, and pension assets for retail and private banking users.',
+      'Designed and led internal technical workshops on the ELK stack (Elasticsearch, Logstash, Kibana), upskilling a cross-functional team in observability and log monitoring.',
+    ],
+  },
+  {
+    title: 'Software Engineer Intern',
+    company: 'infoTRON',
+    duration: 'Summer 2021',
+    desc: [
+      'Worked with the Department of Simulation and Virtual Reality Technologies.',
+      'Performed unit tests on a virtual environment project built in Unity using C#.',
+    ],
+  },
+  {
+    title: 'Software Engineer Intern',
+    company: 'Karşıyaka Municipality',
+    duration: 'Summer 2020',
+    desc: [
+      'Trained alongside the database administrator working with Oracle Database.',
+      'Diagnosed and resolved performance issues in stored functions and triggers.',
+    ],
+  },
+  {
+    title: 'Software Engineer Intern',
+    company: 'Dokuz Eylül University',
+    duration: 'Summer 2019',
+    desc: [
+      'Built a Smart Home System monitoring temperature, pressure, and an RFID door lock using Arduino Uno and the Ubidots IoT platform.',
+    ],
+  },
+];
 
 export default function JobList() {
-  const [value, setValue] = React.useState(0);
+  const ref = useRef(null);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) el.classList.add('visible'); },
+      { threshold: 0.08 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
-  const experienceItems = {
-        Intertech: {
-        jobTitle: "Expert Software Engineer @",
-        duration: "JAN 2022 - PRESENT",
-        desc: [
-          `Assisted in the software development and maintenance of the Securities module of the company's
-          banking application, inter-Securities`,
-          `Worked with the microservice module of Securities and participated in the creation of customized
-          dashboard applications for banking solutions, using Asp.Net Core and React.Js`,
-          `Utilized strategic engineering solutions to improve the application`,
-          `Practiced agile development methodologies`
-            ]
-        },
-        infoTRON: {
-            jobTitle: "Software Engineer Intern @",
-            duration: "JAN 2022 - PRESENT",
-            desc: [
-              `Worked with the Department of Simulation and Virtual Reality Technologies`,
-              `Performed unit tests on the virtual environment project on Unity using C# language`,
-              `Assisted in controlling and creating user-manuals and program documents.`
-                ]
-        },
-        KarşıyakaMunicipality: {
-            jobTitle: "Software Engineer Intern @",
-            duration: "JAN 2022 - PRESENT",
-            desc: [
-              `Trained with the database administrator using Oracle Database`,
-              `Assigned to work with the IT team and assisted in the performance issues of triggers and stored
-              functions`,
-              `Obtained solid understanding of database design and management`
-                ]
-        },
-        DokuzEylulUniversity: {
-            jobTitle: "Software Engineer Intern @",
-            duration: "JAN 2022 - PRESENT",
-            desc: [
-              `Implemented a Smart Home Systems that monitors the temperature, outdoor pressure and RFID
-              door lock controlling system using Arduino Uno microcontroller board`,
-             `Connected the smart home system data to Ubidots using WiFi module and created a specialized
-              monitoring dashboard`,
-              `Implemented an automated system with ultrasonic distance sensor to turn on LED lights for the
-              smart home`]
-        },
-
-
-    };
   return (
-    <Box
-      sx={{ flexGrow: 1, bgcolor: 'background.default',
-      color: 'text.primary', display: 'flex', height: 300 }}
-    >
-      <Tabs
-        orientation="vertical"
-        variant="scrollable"
-        value={value}
-        onChange={handleChange}
-        aria-label="Vertical tabs example"
-        sx={{ borderRight: 1, borderColor: 'divider' }}
-      >
-        {Object.keys(experienceItems).map((key, i) => (
-          <Tab label={key} {...a11yProps(i)} />
-        ))}
-      </Tabs>
-      {Object.keys(experienceItems).map((key, i) => (
-        <TabPanel value={value} index={i}>
-          <span className="joblist-job-title">
-            {experienceItems[key]["jobTitle"] + " "}
-          </span>
-          <span className="joblist-job-company">{key}</span>
-          <div className="joblist-duration">
-            {experienceItems[key]["duration"]}
+    <div className="timeline fade-up" ref={ref}>
+      {jobs.map((job, i) => (
+        <div className="timeline-item" key={i}>
+          <div className="timeline-dot" />
+          <div className="timeline-content">
+            <div className="timeline-header">
+              <span className="timeline-title">{job.title}</span>
+              <span className="timeline-company">@ {job.company}</span>
+            </div>
+            <p className="timeline-date">{job.duration}</p>
+            <ul className="timeline-desc">
+              {job.desc.map((item, j) => (
+                <li key={j}>{item}</li>
+              ))}
+            </ul>
           </div>
-          <ul className="job-description">
-            {experienceItems[key]["desc"].map(function (descItem, i) {
-              return (
-                <FadeIn delay={`${i + 2}00`}>
-                  <li key={i}>{descItem}</li>
-                </FadeIn>
-              );
-            })}
-          </ul>
-        </TabPanel>
-        ))}
-    </Box>
+        </div>
+      ))}
+    </div>
   );
 }

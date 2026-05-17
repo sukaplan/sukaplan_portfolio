@@ -1,104 +1,71 @@
+.about-body {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: start;
+}
 
-  #about {
-    padding-left: 15%;
-    padding-right: 25%;
-    padding-bottom: 10%;
-    min-height: 40vh;
-  }
-  
-  .about-description ul {
-    padding-top: 20px;
-    list-style: none;
-    display: grid;
-    grid-template-columns: repeat(5, minmax(80px, 10px));
-  }
-  
-  .about-description li {
-    position: relative;
-    padding-left: 20px;
-    font-size: 18px;
-    color: var(--slate);
-  }
-  
-  .about-description li::before {
-    content: "▹    ";
-    color: var(--green-bright);
-    position: absolute;
-    left: 0;
-  }
-  
-  .about-content {
-    display: flex;
-    flex-direction: row;
-  }
-  
-  .about-description {
-    font-family: "NTR", sans-serif;
-    color: var(--slate);
-    max-width: 600px;
-    font-size: 22px;
-    text-align: justify;
-    margin: 0;
-  }
-  
-  .about-description a,
-  .about-description b {
-    font-size: 21px;
-    font-weight: bold;
-    color: #c5f376;
-  }
-  
-  .about-image {
-    padding-left: 40px;
-  }
-  
-  .about-image img {
-    max-width: 300px;
-    height: auto;
-    border-radius: 10px;
-    margin-left: 30px;
-    box-shadow: 6px 13px 23px -5px rgba(0, 0, 0, 0.46);
-    border: none;
-  }
-  
-  @media only screen and (max-width: 788px) {
-    .about-image img {
-      max-width: 200px;
-    }
-  }
-  
-  .about-image:hover {
-    transform: translateY(-7px);
-  }
-  
-  @media only screen and (max-width: 600px) {
-    #about {
-      height: unset;
-      padding-left: unset;
-      padding-right: unset;
-      padding-top: 30%;
-    }
-  
-    .about-description {
-      font-size: 18px;
-      text-align: justify;
-    }
-  
-    .about-description a,
-    .about-description b {
-      font-size: 17px;
-    }
-  
-    .about-image img {
-      display: none;
-    }
-  
-    .about-content {
-      display: unset;
-    }
-  }
+/* ── Text ─────────────────────────────────────────── */
+.about-text p {
+  font-size: 16px;
+  line-height: 1.85;
+  color: var(--text-dim);
+  margin-bottom: 22px;
+}
 
-  .tech-stack img{
-    size: 100px;
+.about-text p:last-child {
+  margin-bottom: 0;
+}
+
+.about-text strong {
+  color: var(--accent);
+  font-weight: 600;
+}
+
+/* ── Skills ───────────────────────────────────────── */
+.about-skills {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+}
+
+.skill-category-name {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  margin-bottom: 10px;
+}
+
+.skill-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.skill-pill {
+  padding: 5px 14px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 13px;
+  font-family: var(--font-sans);
+  color: var(--text-dim);
+  transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+  cursor: default;
+  user-select: none;
+}
+
+.skill-pill:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  background: var(--accent-dim);
+}
+
+@media (max-width: 768px) {
+  .about-body {
+    grid-template-columns: 1fr;
+    gap: 44px;
   }
-  
+}
