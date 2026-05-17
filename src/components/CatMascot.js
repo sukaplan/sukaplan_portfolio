@@ -122,15 +122,7 @@ const CatMascot = () => {
   return (
     <div
       ref={mountRef}
-      style={{
-        position: 'fixed',
-        top: '72px',
-        right: '16px',
-        width: '200px',
-        height: '260px',
-        zIndex: 999,
-        pointerEvents: 'none',
-      }}
+      className="cat-mascot"
     />
   );
 };
