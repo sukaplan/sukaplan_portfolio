@@ -1,95 +1,23 @@
-import React, { useRef, useEffect } from 'react';
-import '../styles/Experience.css';
+import React from 'react';
 
-const jobs = [
-  {
-    title: 'Senior Software Engineer',
-    company: 'Intertech',
-    duration: 'Jan 2026 – Present',
-    desc: [
-      'Leading the modernization of legacy banking systems into microservices using .NET 8 and Domain-Driven Design.',
-      'Overseeing architecture decisions for core Securities and Investment modules serving 20M+ customers.',
-    ],
-  },
-  {
-    title: 'Expert Software Engineer',
-    company: 'Intertech',
-    duration: 'Jul 2023 – Jan 2026',
-    desc: [
-      'Refactored 850+ legacy monolithic methods into modular RESTful APIs with clean architecture, enabling independent service deployment and reducing time-to-production.',
-      'Authored 6,000+ unit and integration tests across core financial workflows, raising coverage and building a safety net for high-stakes banking operations.',
-    ],
-  },
-  {
-    title: 'Software Engineer',
-    company: 'Intertech',
-    duration: 'Jan 2022 – Jul 2023',
-    desc: [
-      'Designed and developed a full-stack asset dashboard using React.js and ASP.NET Core, providing visibility into securities, funds, and pension assets for retail and private banking users.',
-      'Designed and led internal technical workshops on the ELK stack (Elasticsearch, Logstash, Kibana), upskilling a cross-functional team in observability and log monitoring.',
-    ],
-  },
-  {
-    title: 'Software Engineer Intern',
-    company: 'infoTRON',
-    duration: 'Summer 2021',
-    desc: [
-      'Worked with the Department of Simulation and Virtual Reality Technologies.',
-      'Performed unit tests on a virtual environment project built in Unity using C#.',
-    ],
-  },
-  {
-    title: 'Software Engineer Intern',
-    company: 'Karşıyaka Municipality',
-    duration: 'Summer 2020',
-    desc: [
-      'Trained alongside the database administrator working with Oracle Database.',
-      'Diagnosed and resolved performance issues in stored functions and triggers.',
-    ],
-  },
-  {
-    title: 'Software Engineer Intern',
-    company: 'Dokuz Eylül University',
-    duration: 'Summer 2019',
-    desc: [
-      'Built a Smart Home System monitoring temperature, pressure, and an RFID door lock using Arduino Uno and the Ubidots IoT platform.',
-    ],
-  },
+const roles = [
+  ['Senior Associate II', 'Jan 2026 — Present', 'Leading the Securities & Investment modernization roadmap toward .NET 10 microservices. Defining domain boundaries, reviewing technical designs, and mentoring engineers.'],
+  ['Senior Associate I', 'Jul 2023 — Jan 2026', 'Restructuring legacy services into .NET 8 APIs, adding regression tests, and leading ELK workshops on observability and troubleshooting.'],
+  ['Software Engineer · Associate I & II', 'Jan 2022 — Jul 2023', 'Shipping AssetDashboard, investment analysis views, and backend services across React, TypeScript and ASP.NET Core.'],
 ];
-
+const internships = [
+  ['OSF Digital', 'Sep 2021 · 1 month', 'Backend Developer Academy: developing ecommerce backend features with Node.js.'],
+  ['infoTRON', 'Summer 2021', 'Unit testing a Unity / C# virtual environment in the Simulation and Virtual Reality Technologies department.'],
+  ['Karşıyaka Municipality', 'Summer 2020', 'Oracle Database training and resolving performance issues in stored functions and triggers.'],
+  ['Dokuz Eylül University', 'Summer 2019', 'A smart home system with Arduino Uno and Ubidots: temperature, pressure and RFID access.'],
+];
 export default function JobList() {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add('visible'); },
-      { threshold: 0.08 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
   return (
-    <div className="timeline fade-up" ref={ref}>
-      {jobs.map((job, i) => (
-        <div className="timeline-item" key={i}>
-          <div className="timeline-dot" />
-          <div className="timeline-content">
-            <div className="timeline-header">
-              <span className="timeline-title">{job.title}</span>
-              <span className="timeline-company">@ {job.company}</span>
-            </div>
-            <p className="timeline-date">{job.duration}</p>
-            <ul className="timeline-desc">
-              {job.desc.map((item, j) => (
-                <li key={j}>{item}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      ))}
+    <div className="career-grid">
+      <div className="career-company"><h3>Intertech</h3><p>Jan 2022 — Present</p><p className="career-company-note">DenizBank subsidiary<br />Securities &amp; Investment · Istanbul</p></div>
+      <ol className="career-roles">{roles.map(([title, date, description]) => <li key={title}><div className="role-heading"><h4>{title}</h4><p className="micro">{date}</p></div><p>{description}</p></li>)}</ol>
+      <div className="career-early-label"><p className="eyebrow">Earlier chapters</p><p>Learning by building</p></div>
+      <div className="internships"><article><div className="role-heading"><h4>B.Sc. Computer Engineering</h4><p className="micro">2016 — 2021</p></div><p>Dokuz Eylül University · Izmir</p></article><details className="early-details"><summary>Training &amp; internships <span aria-hidden="true">+</span></summary><div>{internships.map(([company, date, description]) => <article key={company}><div className="role-heading"><h4>{company}</h4><p className="micro">{date}</p></div><p>{description}</p></article>)}</div></details></div>
     </div>
   );
 }

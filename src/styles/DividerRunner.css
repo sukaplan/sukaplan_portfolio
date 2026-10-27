@@ -1,0 +1,20 @@
+.divider-runner { border-bottom: 1px solid var(--ink); }
+/* A fixed-height play strip keeps every jump and obstacle inside the divider. */
+.runner-track { position: relative; height: 94px; overflow: hidden; isolation: isolate; }
+.runner-caption { position: absolute; top: 8px; left: 0; color: var(--muted); font-size: 9px; max-width: calc(100% - 170px); }
+.runner-score { position: absolute; top: 8px; right: 0; color: var(--accent); font-size: 9px; }
+.runner-score > span { color: var(--muted); }
+.runner-player { position: absolute; bottom: 0; width: 44px; height: 44px; background: none; border: 0; padding: 0; color: var(--ink); z-index: 2; touch-action: manipulation; }
+.runner-player:focus-visible { outline-offset: -2px; }
+.runner-dinosaur { width: 44px; height: 44px; overflow: visible; }
+.runner-dinosaur path, .runner-obstacle path { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+.runner-dinosaur .pencil-echo { stroke-width: .7; opacity: .38; }
+.runner-obstacles { position: absolute; inset: 0; pointer-events: none; }
+.runner-obstacle { position: absolute; left: 0; bottom: 0; color: var(--muted); }
+#work { border-top: 0; }
+@media (max-width: 600px) {
+  .runner-track { height: 102px; }
+  .runner-caption { max-width: calc(100% - 105px); font-size: 8px; }
+  .runner-score { font-size: 8px; }
+  .runner-score > span { display: block; text-align: right; }
+}
