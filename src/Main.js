@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './components/Navbar';
 import Intro from './components/Intro';
 import DividerRunner from './components/DividerRunner';
+import TechStack from './components/TechStack';
 import SelectedWork from './components/SelectedWork';
 import Projects from './components/Projects';
 import Experience from './components/Experience';
@@ -9,6 +10,7 @@ import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollEffects from './components/ScrollEffects';
+import VisitorAnalytics from './components/VisitorAnalytics';
 import useTheme from './hooks/useTheme';
 
 export default function Main() {
@@ -17,9 +19,10 @@ export default function Main() {
     <div className="portfolio">
       <a className="skip-link" href="#main">Skip to content</a>
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
-      <main id="main" tabIndex="-1"><Intro /><DividerRunner /><SelectedWork /><Projects /><Experience /><About /><Contact /></main>
+      <main id="main" tabIndex="-1"><Intro /><DividerRunner /><TechStack /><SelectedWork /><Projects /><Experience /><About /><Contact /></main>
       <Footer />
       <ScrollEffects />
+      <VisitorAnalytics />
     </div>
   );
 }

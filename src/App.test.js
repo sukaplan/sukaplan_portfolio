@@ -11,7 +11,7 @@ afterEach(() => jest.useRealTimers());
 test('presents the portfolio sections and working local navigation', () => {
   render(<App />);
   expect(screen.getByRole('heading', { level: 1 })).toHaveTextContent('I’m Su Kaplan.');
-  expect(screen.getAllByRole('heading', { level: 2 }).map(heading => heading.id)).toEqual(['work-title', 'projects-title', 'experience-title', 'about-title', 'contact-title']);
+  expect(screen.getAllByRole('heading', { level: 2 }).map(heading => heading.id)).toEqual(['toolkit-title', 'work-title', 'projects-title', 'experience-title', 'about-title', 'contact-title']);
   screen.getAllByRole('link').forEach(link => {
     if (link.getAttribute('href').startsWith('#')) expect(document.querySelector(link.getAttribute('href'))).toBeInTheDocument();
   });
@@ -85,18 +85,20 @@ test('preserves contact destinations and the CV’s project link', () => {
 });
 
 
-test('the pull cord toggles the theme and remembers the choice', () => {
+test('neutral off-white is the default and the pull cord remembers explicit choices', () => {
+  // Earlier versions saved dark even without an explicit user choice.
+  window.localStorage.setItem('su-theme', 'dark');
   const first = render(<App />);
-  expect(document.documentElement).toHaveAttribute('data-theme', 'dark');
-  fireEvent.click(screen.getByRole('button', { name: 'Turn on the lights' }));
-  expect(document.documentElement).toHaveAttribute('data-theme', 'light');
-  expect(window.localStorage.getItem('su-theme')).toBe('light');
-  expect(screen.getByRole('button', { name: 'Turn off the lights' })).toHaveAttribute('aria-pressed', 'true');
-  first.unmount();
-  render(<App />);
   expect(document.documentElement).toHaveAttribute('data-theme', 'light');
   fireEvent.click(screen.getByRole('button', { name: 'Turn off the lights' }));
   expect(document.documentElement).toHaveAttribute('data-theme', 'dark');
+  expect(window.localStorage.getItem('su-theme-preference')).toBe('dark');
+  expect(screen.getByRole('button', { name: 'Turn on the lights' })).toHaveAttribute('aria-pressed', 'false');
+  first.unmount();
+  render(<App />);
+  expect(document.documentElement).toHaveAttribute('data-theme', 'dark');
+  fireEvent.click(screen.getByRole('button', { name: 'Turn on the lights' }));
+  expect(document.documentElement).toHaveAttribute('data-theme', 'light');
 });
 
 test('scrolling advances case-study connections and updates heading position', () => {
