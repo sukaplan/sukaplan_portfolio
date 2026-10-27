@@ -1,27 +1,8 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
 import JobList from './JobList';
+import SectionHeading from './SectionHeading';
+import '../styles/Experience.css';
 
-const Experience = () => {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add('visible'); },
-      { threshold: 0.1 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
-  return (
-    <section id="experience" className="section fade-up" ref={ref}>
-      <div className="section-label">Experience</div>
-      <h2 className="section-heading">Where I've worked</h2>
-      <JobList />
-    </section>
-  );
-};
-
-export default Experience;
+export default function Experience() {
+  return <section id="experience" className="section page-width" aria-labelledby="experience-title"><SectionHeading number="03" label="Experience" title={<>Growing with the <em>work.</em></>} id="experience-title" /><JobList /></section>;
+}

@@ -1,9 +1,5 @@
-.footer {
-  text-align: center;
-  padding: 36px 24px;
-  border-top: 1px solid var(--border);
-  font-family: var(--font-mono);
-  font-size: 12px;
-  letter-spacing: 0.5px;
-  color: var(--text-muted);
-}
+.footer { border-top: 1px solid var(--ink); display: flex; justify-content: space-between; align-items: center; gap: 30px; padding: 28px 0 35px; }
+.footer .wordmark { font-size: 25px; }
+.footer > p { color: var(--muted); font-size: 9px; }
+.back-top { font-size: 11px; border-bottom: 0; }
+@media (max-width: 600px) { .footer { flex-wrap: wrap; gap: 18px; padding: 24px 0; } .footer > p { order: 3; width: 100%; font-size: 8px; } .back-top { font-size: 10px; gap: 15px; } }

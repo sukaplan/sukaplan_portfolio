@@ -1,36 +1,25 @@
 import React from 'react';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
 import Navbar from './components/Navbar';
 import Intro from './components/Intro';
-import About from './components/About';
+import DividerRunner from './components/DividerRunner';
+import SelectedWork from './components/SelectedWork';
+import Projects from './components/Projects';
 import Experience from './components/Experience';
+import About from './components/About';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
-
-const theme = createTheme({
-  palette: {
-    mode: 'light',
-    background: { default: '#f9f5ff', paper: '#ede5ff' },
-    text: { primary: '#1a0f3d', secondary: '#4d3b7a' },
-    primary: { main: '#6d4fc2' },
-  },
-  typography: {
-    fontFamily: "'Inter', system-ui, -apple-system, sans-serif",
-  },
-});
+import ScrollEffects from './components/ScrollEffects';
+import useTheme from './hooks/useTheme';
 
 export default function Main() {
+  const [theme, toggleTheme] = useTheme();
   return (
-    <ThemeProvider theme={theme}>
-      <Navbar />
-      <Intro />
-      <div className="section-divider" />
-      <About />
-      <div className="section-divider" />
-      <Experience />
-      <div className="section-divider" />
-      <Contact />
+    <div className="portfolio">
+      <a className="skip-link" href="#main">Skip to content</a>
+      <Navbar theme={theme} onToggleTheme={toggleTheme} />
+      <main id="main" tabIndex="-1"><Intro /><DividerRunner /><SelectedWork /><Projects /><Experience /><About /><Contact /></main>
       <Footer />
-    </ThemeProvider>
+      <ScrollEffects />
+    </div>
   );
 }

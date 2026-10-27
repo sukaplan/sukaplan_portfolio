@@ -1,53 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import '../styles/Navbar.css';
 
-const links = [
-  { label: 'About', id: 'about' },
-  { label: 'Experience', id: 'experience' },
-  { label: 'Contact', id: 'contact' },
-];
-
-const Navbar = () => {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  const scrollTo = (id) => {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
-  };
-
+export default function Navbar({ theme, onToggleTheme }) {
   return (
-    <nav className={`navbar${scrolled ? ' scrolled' : ''}`}>
-      <button
-        className="navbar-logo"
-        onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        aria-label="Back to top"
-      >
-        su<span className="logo-dot">.</span>
+    <header className="masthead page-width">
+      <a className="wordmark" href="#intro" aria-label="Su Kaplan — back to opening">su kaplan<span aria-hidden="true">.</span></a>
+      <span className="masthead-note micro">Software, with intention.</span>
+      <nav className="main-nav" aria-label="Main navigation">
+        <a href="#work">Work</a><a href="#about">About</a><a href="#contact">Contact <span aria-hidden="true">↗</span></a>
+      </nav>
+      <button className="light-switch" type="button" onClick={onToggleTheme} aria-label={theme === 'dark' ? 'Turn on the lights' : 'Turn off the lights'} aria-pressed={theme === 'light'}>
+        <span className="switch-label">Turn {theme === 'dark' ? 'on' : 'off'}<br />the lights</span>
+        <span className="pull-cord" aria-hidden="true"><span className="cord-thread" /><span className="cord-handle" /></span>
       </button>
-
-      <div className="navbar-links">
-        {links.map(({ label, id }) => (
-          <button key={id} onClick={() => scrollTo(id)}>
-            {label}
-          </button>
-        ))}
-        <a
-          href="https://www.linkedin.com/in/su-kaplan/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="navbar-cta"
-        >
-          LinkedIn ↗
-        </a>
-      </div>
-    </nav>
+    </header>
   );
-};
-
-export default Navbar;
+}

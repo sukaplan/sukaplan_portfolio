@@ -1,66 +1,15 @@
-import React, { useRef, useEffect } from 'react';
+import React from 'react';
+import SectionHeading from './SectionHeading';
 import '../styles/About.css';
 
-const skills = {
-  Languages:        ['C#', 'TypeScript', 'JavaScript', 'Python', 'Java', 'Go'],
-  'Backend & Arch': ['.NET 8', 'ASP.NET Core', 'Microservices', 'DDD', 'REST APIs', 'EF Core'],
-  Frontend:         ['React.js', 'TypeScript', 'RESTful API Integration'],
-  'Cloud & DevOps': ['Azure', 'Docker', 'Kubernetes', 'CI/CD', 'Azure DevOps', 'Git'],
-  'Observability':  ['ELK Stack', 'Elasticsearch', 'Kibana', 'Logstash'],
-  'Testing & Data': ['xUnit', 'NUnit', 'SQL', 'Agile / Scrum'],
-};
-
-const About = () => {
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => { if (entry.isIntersecting) el.classList.add('visible'); },
-      { threshold: 0.12 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
+export default function About() {
   return (
-    <section id="about" className="section fade-up" ref={ref}>
-      <div className="section-label">About Me</div>
-      <h2 className="section-heading">Who I am</h2>
-
-      <div className="about-body">
-        <div className="about-text">
-          <p>
-            Hey! I'm <strong>Su</strong>, a Senior Software Engineer with 4.5 years of
-            experience in fintech, building and modernizing large-scale banking systems
-            at <strong>Intertech</strong> — a platform serving 20M+ customers. My core
-            focus is .NET 8 microservices with Domain-Driven Design, but I'm equally
-            comfortable on the React.js frontend or deep in cloud infrastructure on Azure.
-          </p>
-          <p>
-            Highlights include refactoring 850+ legacy monolithic methods into clean
-            RESTful APIs and authoring a 6,000+ test suite that safeguards critical
-            financial workflows. Outside of code, I love watching films, learning
-            languages, and anything that pushes me to grow.
-          </p>
-        </div>
-
-        <div className="about-skills">
-          {Object.entries(skills).map(([category, items]) => (
-            <div className="skill-category" key={category}>
-              <p className="skill-category-name">{category}</p>
-              <div className="skill-pills">
-                {items.map(skill => (
-                  <span className="skill-pill" key={skill}>{skill}</span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
+    <section id="about" className="section page-width" aria-labelledby="about-title">
+      <SectionHeading number="04" label="A little about me" title={<>Curiosity is the <em>constant.</em></>} id="about-title" />
+      <div className="about-grid">
+        <div><p className="about-pullquote">I like making<br />complicated things<br /><em>make sense.</em></p><p className="about-location micro">Berlin, Germany / Open to conversation</p></div>
+        <div className="about-copy"><p>I’m a senior fullstack engineer based in Berlin. My work has centered on financial software for DenizBank through Intertech, especially funds, securities and investment products.</p><p>I enjoy breaking down complex problems, talking through the tradeoffs with teammates, and turning business needs into working software. That can mean a React interface, a domain model, or the test that makes a difficult refactor possible.</p><p>Learning languages is another way I stay curious. I speak Turkish and English, and I’m studying German. Away from code, there’s usually a film on my watchlist.</p><dl className="practice-list"><div><dt>Backend</dt><dd>C# · .NET · DDD · SQL · RabbitMQ</dd></div><div><dt>Frontend</dt><dd>React · Next.js · TypeScript</dd></div><div><dt>Delivery</dt><dd>Azure · AWS / S3 · Docker · Kubernetes</dd></div><div><dt>Quality</dt><dd>xUnit · NUnit · ELK · CI/CD</dd></div></dl><p className="about-certification">Microsoft Certified: Azure Fundamentals · 2021</p></div>
       </div>
     </section>
   );
-};
-
-export default About;
+}
