@@ -6,7 +6,7 @@ import '../styles/Intro.css';
 export default function Intro() {
   return (
     <section id="intro" className="hero page-width" aria-labelledby="intro-title">
-      <div className="hero-topline micro"><span>Senior fullstack engineer</span><span>Based in Berlin, Germany</span></div>
+      <div className="hero-topline micro"><span>Senior fullstack engineer</span></div>
       <div className="hero-layout">
         <div className="hero-copy">
           <Greeting />

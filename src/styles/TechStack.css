@@ -1,0 +1,40 @@
+.toolkit { padding: 43px 0 68px; }
+.toolkit-intro { display: flex; justify-content: space-between; align-items: baseline; gap: 25px; margin-bottom: 34px; }
+.toolkit-intro h2 { font: 36px/1.15 var(--serif); letter-spacing: -.035em; }
+.toolkit-intro h2 em { color: var(--accent); }
+.toolkit-intro > p { color: var(--muted); font-size: 9px; }
+.toolkit-layout { display: grid; grid-template-columns: 1fr 1.15fr; gap: 90px; }
+.toolkit-index { border-top: 1px solid var(--rule); }
+.toolkit-tab { width: 100%; border: 0; border-bottom: 1px solid var(--rule); background: none; display: grid; grid-template-columns: 24px 1fr 18px; align-items: center; gap: 18px; min-height: 76px; padding: 20px 0; text-align: left; color: var(--muted); }
+.toolkit-tab > span:nth-child(2) { font: 23px/1.25 var(--serif); letter-spacing: -.025em; transition: transform .3s, color .3s; }
+.toolkit-tab > span:last-child { transition: transform .3s; }
+.toolkit-tab[aria-selected="true"] { color: var(--accent); border-bottom-color: var(--accent); }
+.toolkit-tab[aria-selected="true"] > span:nth-child(2), .toolkit-tab:hover > span:nth-child(2) { transform: translateX(8px); }
+.toolkit-tab[aria-selected="true"] > span:last-child { transform: rotate(45deg); }
+.toolkit-panel { min-width: 0; }
+.toolkit-panel[hidden] { display: none; }
+.toolkit-content { animation: toolkit-enter .45s ease-out; }
+.toolkit-lead { font: italic clamp(33px, 3.9vw, 53px)/1.1 var(--serif); color: var(--accent); letter-spacing: -.04em; }
+.toolkit-tools { font: 11px/1.9 var(--mono); color: var(--muted); margin-top: 20px; max-width: 480px; }
+.toolkit-description { font-size: 14px; line-height: 1.85; color: var(--ink); margin-top: 24px; max-width: 500px; }
+.toolkit-flow { display: flex; align-items: flex-start; margin-top: 38px; max-width: 475px; }
+.toolkit-step { display: flex; align-items: center; flex-direction: column; gap: 12px; font: 10px/1.4 var(--mono); color: var(--muted); }
+.toolkit-point { width: 10px; height: 10px; border: 1px solid var(--accent); background: var(--paper); border-radius: 50%; }
+.toolkit-step:first-child .toolkit-point, .toolkit-step:last-child .toolkit-point { background: var(--accent); }
+.toolkit-wire { height: 1px; flex: 1; background: var(--accent); margin: 5px 9px 0; transform-origin: left; animation: toolkit-wire .7s ease-out; }
+.toolkit-footnote { margin-top: 23px; font: italic 17px/1.5 var(--serif); color: var(--muted); }
+@keyframes toolkit-enter { from { transform: translateY(10px); } to { transform: translateY(0); } }
+@keyframes toolkit-wire { from { transform: scaleX(0); } to { transform: scaleX(1); } }
+@media (max-width: 1000px) { .toolkit-layout { gap: 40px; } .toolkit-tab > span:nth-child(2) { font-size: 21px; } }
+@media (max-width: 600px) {
+  .toolkit { padding: 30px 0 44px; }
+  .toolkit-intro { display: block; margin-bottom: 23px; }
+  .toolkit-intro h2 { font-size: 31px; }
+  .toolkit-intro > p { margin-top: 13px; }
+  .toolkit-layout { grid-template-columns: 1fr; gap: 30px; }
+  .toolkit-tab { min-height: 64px; padding: 16px 0; }
+  .toolkit-tab > span:nth-child(2) { font-size: 23px; }
+  .toolkit-lead { font-size: 39px; }
+  .toolkit-description { font-size: 13px; }
+  .toolkit-flow { margin-top: 29px; }
+}

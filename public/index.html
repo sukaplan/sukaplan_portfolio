@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="utf-8" />
     <link rel="icon" type="image/svg+xml" href="%PUBLIC_URL%/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#090f1c" />
+    <meta name="theme-color" content="#f5f4f2" />
     <script>
       try {
-        if (localStorage.getItem('su-theme') === 'light') {
-          document.documentElement.dataset.theme = 'light';
-          document.querySelector('meta[name="theme-color"]').content = '#f5f4f2';
+        if (localStorage.getItem('su-theme-preference') === 'dark') {
+          document.documentElement.dataset.theme = 'dark';
+          document.querySelector('meta[name="theme-color"]').content = '#090f1c';
         }
-      } catch (error) { /* Default to dark when storage is unavailable. */ }
+      } catch (error) { /* Default to neutral off-white when storage is unavailable. */ }
     </script>
-    <meta name="description" content="Su Kaplan, senior fullstack engineer based in Berlin. Thoughtful interfaces, reliable systems, and selected work across React, .NET and financial software." />
+    <meta name="description" content="Su Kaplan, senior fullstack engineer. Thoughtful interfaces, reliable systems, and selected work across React, .NET and financial software." />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>Su Kaplan — Senior Fullstack Engineer</title>
     <meta property="og:title" content="Su Kaplan — Senior Fullstack Engineer" />
