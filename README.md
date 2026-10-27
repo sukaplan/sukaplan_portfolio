@@ -4,7 +4,7 @@ A React portfolio built around the Living Diagram direction: a black-blue backgr
 
 ## Development
 
-Use Node 20 (`nvm use`), then:
+Use Node 24 (`nvm use`), then:
 
 ```sh
 npm ci
